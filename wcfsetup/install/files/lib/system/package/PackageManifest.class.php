@@ -75,6 +75,7 @@ final class PackageManifest {
 		}, $this->archive->getOptionals());
 		
 		$includedPackages = array_merge($requirements, $optionals);
+		$ignoredFiles = array_merge($includedPackages, ['package.xml']);
 		
 		return $this->stringifyV1([
 			'manifestVersion' => '1',
@@ -84,7 +85,7 @@ final class PackageManifest {
 			'humanName' => $this->getHumanNames(),
 			'requirements' => $this->getRequirements(),
 			'excludedPackages' => $this->getExcludedPackages(),
-			'files' => $this->getFiles($includedPackages),
+			'files' => $this->getFiles($ignoredFiles),
 			'install' => $this->getInstallInstructions(),
 			'update' => $this->getUpdateInstructions(),
 		]);
