@@ -193,18 +193,18 @@ class PackageArchive {
 				case 'packagename':
 				case 'packagedescription':
 				case 'readme':
-				case 'license':
-					if (!isset($this->packageInfo[$element->tagName])) $this->packageInfo[$element->tagName] = [];
+				case 'license':					
+					// fix case-sensitive names
+					$name = $element->tagName;
+					if ($name == 'packagename') $name = 'packageName';
+					else if ($name == 'packagedescription') $name = 'packageDescription';
+					
+					if (!isset($this->packageInfo[$name])) $this->packageInfo[$name] = [];
 					
 					$languageCode = 'default';
 					if ($element->hasAttribute('language')) {
 						$languageCode = $element->getAttribute('language');
 					}
-					
-					// fix case-sensitive names
-					$name = $element->tagName;
-					if ($name == 'packagename') $name = 'packageName';
-					else if ($name == 'packagedescription') $name = 'packageDescription';
 					
 					$this->packageInfo[$name][$languageCode] = $element->nodeValue;
 				break;
