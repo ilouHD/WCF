@@ -11,6 +11,7 @@ namespace wcf\system\package;
  * @copyright	2001-2020 WoltLab GmbH
  * @license	GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  * @package	WoltLabSuite\Core\System\Package
+ * @since	5.3
  */
 final class PackageManifest {
 	/**
