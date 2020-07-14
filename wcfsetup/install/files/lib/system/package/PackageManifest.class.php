@@ -83,7 +83,7 @@ final class PackageManifest {
 			'identifier' => $this->archive->getPackageInfo('name'),
 			'version' => $this->archive->getPackageInfo('version'),
 			'isApplication' => $this->archive->getPackageInfo('isApplication'),
-			'humanName' => $this->getHumanNames(),
+			'displayName' => $this->getDisplayNames(),
 			'requirements' => $this->getRequirements(),
 			'excludedPackages' => $this->getExcludedPackages(),
 			'files' => $this->getFiles($ignoredFiles),
@@ -92,10 +92,10 @@ final class PackageManifest {
 		]);
 	}
 	
-	private function getHumanNames() {
-		$humanNames = $this->archive->getPackageInfo('packageName');
-		ksort($humanNames);
-		return $humanNames;
+	private function getDisplayNames() {
+		$displayNames = $this->archive->getPackageInfo('packageName');
+		ksort($displayNames);
+		return $displayNames;
 	}
 	
 	private function getRequirements() {
