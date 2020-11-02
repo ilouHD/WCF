@@ -71,12 +71,17 @@
 {/if}
 
 <script data-relocate="true">
-	require(['Language'], function(Language) {
+	require(['Language', 'WoltLabSuite/Core/Acp/Ui/Worker'], function (Language, AcpUiWorker) {
 		Language.add('wcf.acp.worker.abort.confirmMessage', '{lang}wcf.acp.worker.abort.confirmMessage{/lang}');
 		
-		elById('sitemapRebuildButton').addEventListener('click', function () {
-			new WCF.ACP.Worker('sitemapRebuild', 'wcf\\system\\worker\\SitemapRebuildWorker', '{lang}wcf.acp.rebuildData.com.woltlab.wcf.sitemap{/lang}', {
-				forceRebuild: true
+		document.getElementById('sitemapRebuildButton').addEventListener('click', () => {
+			new AcpUiWorker({
+				dialogId: 'sitemapRebuild',
+				dialogTitle: '{jslang}wcf.acp.rebuildData.com.woltlab.wcf.sitemap{/jslang}',
+				className: 'wcf\\system\\worker\\SitemapRebuildWorker',
+				parameters: {
+					forceRebuild: true,
+				},
 			});
 		});
 	});
